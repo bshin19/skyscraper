@@ -58,7 +58,7 @@ $(document).on("click", ".noteView", function () {
   })
     .then(function (data) {
 
-      console.log(data);
+      //console.log(data);
 
       var title = $("<h5>")
         .addClass("col-12")
@@ -163,6 +163,6 @@ $(document).on("click", "#savenote", function () {
     // With that done
     .then(function (data) {
       // Log the response
-      console.log(data);
+      //console.log(data);
     });
 });

@@ -61,7 +61,6 @@ app.get("/scrape", function (req, res) {
     axios.get("https://www.macrumors.com/").then(function (response) {
         // Then, we load that into cheerio and save it to $ for a shorthand selector
         const $ = cheerio.load(response.data);
-        console.log("scrape begun");
         // Now, we grab every h2 within an article tag, and do the following:
         $(".article").each(function (i, element) {
             // Save an empty result object
@@ -77,14 +76,9 @@ app.get("/scrape", function (req, res) {
             result.author = $(element)
                 .children(".byline").children("a").text();
 
-            console.log(result)
-
             // Create a new Article using the `result` object built from scraping
             db.Article.create(result)
-                .then(function (dbArticle) {
-                    // View the added result in the console
-                    console.log(dbArticle);
-                })
+                .then(function (dbArticle) {})
                 .catch(function (err) {
                     // If an error occurred, send it to the client
                     return res.json(err);
@@ -148,5 +142,5 @@ app.post("/articles/:id", function (req, res) {
 
 // Start the server
 app.listen(PORT, function () {
-    console.log("App running on port " + PORT + "!");
+    //console.log("App running on port " + PORT + "!");
 });
